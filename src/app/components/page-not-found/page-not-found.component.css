@@ -1,0 +1,46 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color:lightslategray;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.error-container {
+    text-align: center;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #dc3545;
+    margin-bottom: 70px;
+}
+
+.error-message {
+    font-size: 1.7rem;
+    margin-top: 10px;
+    color: #000000;
+    margin-bottom: 30px;
+
+}
+
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color:blueviolet;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    
+}
+
+.button:hover {
+    background-color: #0056b3;
+}

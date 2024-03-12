@@ -1,0 +1,12 @@
+.mat-dialog-container {
+    width: 80%; /* Puedes ajustar este valor según tus preferencias */
+  }
+
+  .validatorError {
+    color: red
+  }
+
+  .validatorOk {
+    color: rgb(14, 238, 14);
+  }
+  

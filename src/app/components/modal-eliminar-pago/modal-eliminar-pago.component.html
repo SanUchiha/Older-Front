@@ -1,0 +1,17 @@
+<div class="modal-overlay" (click)="close()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <h5 class="modal-title text-lg font-semibold">Eliminar Socio</h5>
+            <div class="close-container">
+                <span class="close" (click)="close()" aria-label="Close">&times;</span>
+            </div>
+        </div>
+        <div class="modal-body">
+            <p>¿Deseas eliminar el pago de la base de datos?</p>
+            <div class="options-container">
+                <button class="delete-button" (click)="confirmarEliminar()">Eliminar</button>
+                <button class="cancel-button" (click)="close()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

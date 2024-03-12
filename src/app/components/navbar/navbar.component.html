@@ -1,0 +1,24 @@
+<header class="text-white bg-gray-700 body-font">
+  <div class="container mx-auto flex items-center justify-between p-4 flex-wrap">
+
+    <nav class="items-center text-base px-10">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+        class="mr-5 mb-5 hover:text-white font-medium text-lg md:text-xl lg:text-lg">Inicio</a>
+      <a routerLink="/socios" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+        class="mr-5 mb-5 hover:text-white font-medium text-lg md:text-xl lg:text-lg">Socios</a>
+      <a routerLink="/pagos" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+        class="mr-5 mb-5 hover:text-white font-medium text-lg md:text-xl lg:text-lg">Pagos</a>
+      <a routerLink="/reportes" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+        class="mr-5 mb-5 hover:text-white font-medium text-lg md:text-xl lg:text-lg">Reportes</a>
+    </nav>
+
+    <a class="flex items-center title-font font-medium text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-purple-500 rounded-full"
+        viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-xl xl:block lg:hidden text-left">Centro social de mayores del Barrio del Progreso</span>
+    </a>
+  </div>
+</header>

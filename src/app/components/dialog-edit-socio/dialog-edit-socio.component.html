@@ -1,0 +1,73 @@
+<div>
+  <h2 class="text-purple-400 mx-auto max-w-md">Editar Socio</h2>
+</div>
+<form class="mx-auto max-w-md"> 
+  <div class="mb-4">
+    <label for="numeroSocio" class="block text-white mx-1">Número de Socio:</label>
+    <input type="number" id="numeroSocio" name="numeroSocio" [(ngModel)]="socioEncontrado.numeroSocio"
+      class="form-input mt-1 block w-full" pattern="[0-9]+" placeholder="Introduce número"
+      title="Solo se permiten números" required>
+  </div>
+
+  <div class="mb-4">
+    <label for="nombre" class="block text-white mx-">Nombre:</label> 
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="socioEncontrado.nombre"
+      class="form-input mt-1 block w-full" required>
+  </div>
+
+  <div class="mb-4">
+    <label for="primerApellido" class="block text-white mx-">Primer apellido:</label>
+    <input type="text" id="primerApellido" name="primerApellido" [(ngModel)]="socioEncontrado.primerApellido"
+      class="form-input mt-1 block w-full">
+  </div>
+
+  <div class="mb-4">
+    <label for="segundoApellido" class="block text-white mx-">Segundo apellido:</label>
+    <input type="text" id="segundoApellido" name="segundoApellido" [(ngModel)]="socioEncontrado.segundoApellido"
+      class="form-input mt-1 block w-full">
+  </div>
+
+  <div class="mb-4">
+    <label for="dni" class="block text-white mx-1">DNI:</label> 
+    <input type="text" id="dni" name="dni" [(ngModel)]="socioEncontrado.dni" class="form-input mt-1 block w-full"
+      maxlength="9" required>
+  </div>
+
+  <div class="mb-4">
+    <label for="fechaNacimiento" class="block text-white mx-1">Fecha de Nacimiento:</label>
+    <input type="text" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="socioEncontrado.fechaNacimiento"
+      class="form-input mt-1 block w-full" pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+      title="Formato válido: dd/mm/aaaa">
+  </div>
+
+  <div class="mb-4">
+    <label for="telefono" class="block text-white mx-1">Teléfono:</label> 
+    <input type="text" id="telefono" name="telefono" [(ngModel)]="socioEncontrado.telefono"
+      class="form-input mt-1 block w-full" maxlength="9">
+  </div>
+
+  <div class="mb-4">
+    <label for="direccion" class="block text-white mx-1">Dirección:</label>
+    <input type="text" id="direccion" name="direccion" [(ngModel)]="socioEncontrado.direccion"
+      class="form-input mt-1 block w-full">
+  </div>
+
+  <div class="mb-4">
+    <label for="localidad" class="block text-white mx-1">Localidad:</label>
+    <input type="text" id="localidad" name="localidad" [(ngModel)]="socioEncontrado.localidad"
+      class="form-input mt-1 block w-full">
+  </div>
+
+  <div class="mt-6 mb-4 flex justify-between">
+    <button (click)="guardarSocio()"
+      class="text-purple-400 inline-flex items-center bg-transparent border-2 border-purple-400 py-2 px-4 rounded-md transition duration-300 ease-in-out hover:bg-purple-400 hover:text-white focus:outline-none focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+      type="button">
+      GUARDAR CAMBIOS
+    </button>
+    <button (click)="onClose()"
+      class="text-purple-400 inline-flex items-center bg-transparent border-2 border-purple-400 py-2 px-4 rounded-md transition duration-300 ease-in-out hover:bg-purple-400 hover:text-white focus:outline-none focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+      type="button">
+      CERRAR
+    </button>
+  </div>
+</form>

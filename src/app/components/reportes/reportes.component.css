@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #1a202c;
+    color: #e2e8f0;
+  }
+
+  .center-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .card {
+    width: 300px; /* ajusta según tus necesidades */
+    margin: 20px;
+    text-align: center;
+  }
+
+  .card svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .card h2 {
+    font-size: 2rem;
+    color: #8a63e5;
+  }
+
+  .card p {
+    font-size: 1rem;
+  }

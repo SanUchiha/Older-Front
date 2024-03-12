@@ -1,0 +1,26 @@
+<div class="modal-overlay" (click)="close()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h5 class="modal-title text-lg font-semibold">Pagar cuota</h5>
+      <div class="close-container">
+        <span class="close" (click)="close()" aria-label="Close">&times;</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="mb-4">
+        
+        <div class="options-container">
+          <label for="cuotaInput" class="text-gray-300">Cuota:</label>
+          <input type="number" id="cuotaInput" [(ngModel)]="cuota" class="w-20 text-black ">
+        </div>
+      </div>
+      <p>¿Desea registrar el pago?</p>
+      <div class="options-container">
+        <button class="delete-button" (click)="confirmarPagar(cuota)">Sí</button>
+        <button class="cancel-button" (click)="close()">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

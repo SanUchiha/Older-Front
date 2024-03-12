@@ -1,0 +1,88 @@
+<div>
+  <h2 class="text-purple-400 mx-auto max-w-md">Añadir Socio</h2>
+</div>
+<form class="mx-auto max-w-md">
+  <div class="mb-4">
+    <label for="numeroSocio" class="block text-white mx-1">Número de Socio:</label>
+  
+    <input type="number" id="numeroSocio" name="numeroSocio" [(ngModel)]="socio.numeroSocio"
+      class="form-input mt-1 block w-full" pattern="[0-9]+" placeholder="Introduce número"
+      title="Solo se permiten números" required (ngModelChange)="validarNumeroSocio($event)">
+
+      @if(numeroSocioPermitido == false){
+        <div class="validatorError">
+          Este número NO está permitido.
+        </div>
+      } 
+      @else {
+        <div class="validatorOk">
+          Este número está permitido.
+        </div>      
+      }
+      </div>  
+
+  <div class="mb-4">
+    <label for="nombre" class="block text-white mx-">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="socio.nombre" class="form-input mt-1 block w-full"
+      required>
+  </div>
+
+  <div class="mb-4">
+    <label for="primerApellido" class="block text-white mx-">Primer Apellido:</label>
+
+    <input type="text" id="primerApellido" name="primerApellido" [(ngModel)]="socio.primerApellido"
+      class="form-input mt-1 block w-full" required>
+  </div>
+
+  <div class="mb-4">
+    <label for="segundoApellido" class="block text-white mx-">Segundo Apellido:</label>
+
+    <input type="text" id="segundoApellido" name="segundoApellido" [(ngModel)]="socio.segundoApellido"
+      class="form-input mt-1 block w-full">
+  </div>
+
+  <div class="mb-4">
+    <label for="dni" class="block text-white mx-1">DNI:</label>
+    <input type="text" id="dni" name="dni" [(ngModel)]="socio.dni" class="form-input mt-1 block w-full" maxlength="9"
+      required>
+  </div>
+
+  <div class="mb-4">
+    <label for="fechaNacimiento" class="block text-white mx-1">Fecha de Nacimiento:</label>
+
+    <input type="text" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="socio.fechaNacimiento"
+      class="form-input mt-1 block w-full" pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+      title="Formato válido: dd/mm/aaaa">
+  </div>
+
+  <div class="mb-4">
+    <label for="telefono" class="block text-white mx-1">Teléfono:</label>
+    <input type="text" id="telefono" name="telefono" [(ngModel)]="socio.telefono" class="form-input mt-1 block w-full"
+      maxlength="9">
+  </div>
+
+  <div class="mb-4">
+    <label for="direccion" class="block text-white mx-1">Dirección:</label>
+    <input type="text" id="direccion" name="direccion" [(ngModel)]="socio.direccion"
+      class="form-input mt-1 block w-full">
+  </div>
+
+  <div class="mb-4">
+    <label for="localidad" class="block text-white mx-1">Localidad:</label>
+    <input type="text" id="localidad" name="localidad" [(ngModel)]="socio.localidad"
+      class="form-input mt-1 block w-full">
+  </div>
+
+  <div class="mt-6 mb-4 flex justify-between">
+    <button (click)="guardarSocio()"
+      class="text-purple-400 inline-flex items-center bg-transparent border-2 border-purple-400 py-2 px-4 rounded-md transition duration-300 ease-in-out hover:bg-purple-400 hover:text-white focus:outline-none focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+      type="button">
+      GUARDAR
+    </button>
+    <button (click)="onClose()"
+      class="text-purple-400 inline-flex items-center bg-transparent border-2 border-purple-400 py-2 px-4 rounded-md transition duration-300 ease-in-out hover:bg-purple-400 hover:text-white focus:outline-none focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+      type="button">
+      CERRAR
+    </button>
+  </div>
+</form>
