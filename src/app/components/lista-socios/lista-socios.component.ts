@@ -4,7 +4,7 @@ import { Socio, SocioData } from '../../interfaces/socio';
 import { SocioService } from '../../services/socio.service';
 import { PagoService } from '../../services/pago.service';
 import { ModalSocioComponent } from '../modal-socio/modal-socio.component';
-import { ModalEliminarSocioComponent } from "../modal-eliminar-socio/modal-eliminar-socio.component";
+import { ModalEliminarSocioComponent } from '../modal-eliminar-socio/modal-eliminar-socio.component';
 import { FormsModule } from '@angular/forms';
 import { PagarCuotaSocio } from '../../interfaces/pago';
 import { ModalPagarCuotaComponent } from '../modal-pagar-cuota/modal-pagar-cuota.component';
@@ -24,11 +24,10 @@ import { DialogEditSocioComponent } from '../dialog-edit-socio/dialog-edit-socio
     ModalEliminarSocioComponent,
     FormsModule,
     ModalPagarCuotaComponent,
-    MatIconModule
-  ]
+    MatIconModule,
+  ],
 })
 export class ListaSociosComponent implements OnInit, PipeTransform {
-
   listSocios: Socio[] = [];
   id: number | undefined;
   showModalFlag: boolean = false;
@@ -46,10 +45,12 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
     segundoApellido: '',
     flag: 0,
     modificar: false,
-    nuevoNumeroSocio: 0
+    nuevoNumeroSocio: 0,
   };
   socio!: Socio;
   apellidoFiltro!: string;
+  socioFiltro!: number;
+
   dniFiltro!: string;
   showModalPagarFlag: boolean = false;
   numeroSocioAPagar!: number;
@@ -58,14 +59,20 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
   pagoObj!: PagoObject;
   ultimoSocio!: Socio;
 
-  constructor(private socioService: SocioService, private pagoService: PagoService, private dialog: MatDialog) { }
+  constructor(
+    private socioService: SocioService,
+    private pagoService: PagoService,
+    private dialog: MatDialog
+  ) {}
 
   transform(items: any[], searchText: string): any[] {
     if (!items || !searchText) {
       return items;
     }
 
-    return items.filter(item => item.primerApellido.toLowerCase().includes(searchText.toLowerCase()));
+    return items.filter((item) =>
+      item.primerApellido.toLowerCase().includes(searchText.toLowerCase())
+    );
   }
 
   ngOnInit(): void {
@@ -73,36 +80,41 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
   }
 
   GetAllSocios() {
-    this.socioService.getAllSocios()
-      .subscribe(listSocios => {
-        this.listSocios = listSocios.map(socioData => {
-          if (socioData.direccion === "string") socioData.direccion = "";
-          if (socioData.localidad === "string") socioData.localidad = "";
-          if (socioData.fechaNacimiento === "string" || socioData.fechaNacimiento === "0001-01-01") socioData.fechaNacimiento = "";
-          return socioData;
-        });
+    this.socioService.getAllSocios().subscribe((listSocios) => {
+      this.listSocios = listSocios.map((socioData) => {
+        if (socioData.direccion === 'string') socioData.direccion = '';
+        if (socioData.localidad === 'string') socioData.localidad = '';
+        if (
+          socioData.fechaNacimiento === 'string' ||
+          socioData.fechaNacimiento === '0001-01-01'
+        )
+          socioData.fechaNacimiento = '';
+        return socioData;
+      });
 
+      if (this.listSocios.length > 0) {
+        this.listSocios.sort((a: Socio, b: Socio) => b.flag - a.flag);
+        this.ultimoSocio = this.listSocios[0];
 
-        if (this.listSocios.length > 0) {
-          this.listSocios.sort((a: Socio, b: Socio) => b.flag - a.flag);
-          this.ultimoSocio = this.listSocios[0];
+        this.listSocios.sort((a: Socio, b: Socio) => {
+          // Ordenar por primerApellido
+          const comparacionPrimerApellido = a.primerApellido.localeCompare(
+            b.primerApellido
+          );
 
-          this.listSocios.sort((a: Socio, b: Socio) => {
-            // Ordenar por primerApellido
-            const comparacionPrimerApellido = a.primerApellido.localeCompare(b.primerApellido);
-
-            // Si los primeros apellidos son iguales, ordenar por segundoApellido
-            const comparacionSegundoApellido = comparacionPrimerApellido === 0
+          // Si los primeros apellidos son iguales, ordenar por segundoApellido
+          const comparacionSegundoApellido =
+            comparacionPrimerApellido === 0
               ? a.segundoApellido.localeCompare(b.segundoApellido)
               : comparacionPrimerApellido;
 
-            // Si los segundos apellidos son iguales, ordenar por nombre
-            return comparacionSegundoApellido === 0
-              ? a.nombre.localeCompare(b.nombre)
-              : comparacionSegundoApellido;
-          });
-        }
-      });
+          // Si los segundos apellidos son iguales, ordenar por nombre
+          return comparacionSegundoApellido === 0
+            ? a.nombre.localeCompare(b.nombre)
+            : comparacionSegundoApellido;
+        });
+      }
+    });
   }
 
   formatFecha(fecha: string): string {
@@ -120,18 +132,25 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
 
   async GetSocio(numeroSocio: number) {
     try {
-      const socioData = await this.socioService.getSocio(numeroSocio).toPromise();
+      const socioData = await this.socioService
+        .getSocio(numeroSocio)
+        .toPromise();
 
       // Verificar si se obtuvieron datos antes de mostrar la modal
       if (socioData) {
         this.showModalFlag = true;
-        if (socioData.direccion == "string") socioData.direccion = "";
-        if (socioData.localidad == "string") socioData.localidad = "";
-        if (socioData.fechaNacimiento == "string") socioData.fechaNacimiento = "";
-        if (socioData.fechaNacimiento == "0001-01-01") socioData.fechaNacimiento = "";
+        if (socioData.direccion == 'string') socioData.direccion = '';
+        if (socioData.localidad == 'string') socioData.localidad = '';
+        if (socioData.fechaNacimiento == 'string')
+          socioData.fechaNacimiento = '';
+        if (socioData.fechaNacimiento == '0001-01-01')
+          socioData.fechaNacimiento = '';
         this.ShowModal(socioData);
       } else {
-        console.error('No se encontraron datos para el número de socio:', numeroSocio);
+        console.error(
+          'No se encontraron datos para el número de socio:',
+          numeroSocio
+        );
       }
     } catch (error) {
       console.error('Error al obtener datos del socio:', error);
@@ -161,13 +180,11 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
     const pagoHecho = this.ComprobarPago(numeroSocio);
     if (await pagoHecho) {
       alert('Este socio ya tiene un pago registrado');
-    }
-    else {
+    } else {
       try {
         this.numeroSocioAPagar = numeroSocio;
         await this.numeroSocioAPagar;
         this.showModalPagarFlag = true;
-
       } catch (error) {
         console.error('Error al obtener datos del socio:', error);
       }
@@ -175,10 +192,11 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
   }
   async ComprobarPago(numeroSocio: number) {
     try {
-      var pagoBuscado = await this.pagoService.getPagoSocio(numeroSocio).toPromise();
+      var pagoBuscado = await this.pagoService
+        .getPagoSocio(numeroSocio)
+        .toPromise();
       return true;
-    } 
-    catch (error) {
+    } catch (error) {
       return false;
     }
   }
@@ -199,11 +217,10 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
     try {
       await this.socioService.deleteSocio(numeroSocio).toPromise();
       this.HideModalEliminar();
-      alert('Socio borrado con exito')
+      alert('Socio borrado con exito');
       window.location.reload();
-    }
-    catch {
-      alert('No se ha podido borrar el socio.')
+    } catch {
+      alert('No se ha podido borrar el socio.');
       this.HideModalEliminar();
       window.location.reload();
     }
@@ -212,10 +229,9 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
     try {
       await this.pagoService.agregarPago(pagoObj).toPromise();
       this.HideModalPagar();
-      alert('Pago registrado con exito')
-    }
-    catch {
-      alert('No se ha podido registrar el pago.')
+      alert('Pago registrado con exito');
+    } catch {
+      alert('No se ha podido registrar el pago.');
       this.HideModalPagar();
     }
   }
@@ -231,11 +247,9 @@ export class ListaSociosComponent implements OnInit, PipeTransform {
   openSocioDialog(id: number): void {
     const dialogRef = this.dialog.open(DialogEditSocioComponent, {
       width: '400px',
-      data: { id }
+      data: { id },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
-
 }

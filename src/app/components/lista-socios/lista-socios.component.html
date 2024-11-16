@@ -5,14 +5,46 @@
 
       <table class="table-auto w-full text-left whitespace-no-wrap">
         <thead>
-          <th class="px-4 py-3 title-font tracking-wider font-small text-white text-sm bg-gray-800 text-center">Nº Socio</th>
-          <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Nombre</th>
-          <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">1º apellido</th>
-          <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">2º apellido</th>
-          <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">DNI</th>
-          <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Ver/Editar </th>
-          <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Pagar</th>
-          <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Eliminar</th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-small text-white text-sm bg-gray-800 text-center"
+          >
+            Nº Socio
+          </th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+          >
+            Nombre
+          </th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+          >
+            1º apellido
+          </th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+          >
+            2º apellido
+          </th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+          >
+            DNI
+          </th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+          >
+            Ver/Editar
+          </th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+          >
+            Pagar
+          </th>
+          <th
+            class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+          >
+            Eliminar
+          </th>
         </thead>
         <tbody>
           @if(ultimoSocio){
@@ -22,29 +54,46 @@
           <td class="px-4 py-3">{{ ultimoSocio.segundoApellido }}</td>
           <td class="px-4 py-3">{{ ultimoSocio.dni }}</td>
           <td class="w-10 text-center">
-            <button class="text-blue-500" (click)="GetSocio(ultimoSocio.numeroSocio)"
-              title="Haz clic para ver la ficha del socio.">
+            <button
+              class="text-blue-500"
+              (click)="GetSocio(ultimoSocio.numeroSocio)"
+              title="Haz clic para ver la ficha del socio."
+            >
               <mat-icon>visibility</mat-icon>
             </button>
-            <button class="text-blue-500" (click)="EditSocio(ultimoSocio.numeroSocio)" title="Haz clic para editar.">
+            <button
+              class="text-blue-500"
+              (click)="EditSocio(ultimoSocio.numeroSocio)"
+              title="Haz clic para editar."
+            >
               <mat-icon>edit_note</mat-icon>
             </button>
           </td>
           <td class="w-10 text-center">
-            <button class="text-green-500" (click)="PagarCuota(ultimoSocio.numeroSocio)"
-              title="Haz clic para realizar el pago de la cuota">Pagar</button>
+            <button
+              class="text-green-500"
+              (click)="PagarCuota(ultimoSocio.numeroSocio)"
+              title="Haz clic para realizar el pago de la cuota"
+            >
+              Pagar
+            </button>
           </td>
           <td class="w-10 text-center">
-            <button class="text-red-500" (click)="DeleteSocio(ultimoSocio)"
-              title="Haz clic para eliminar el socio">Eliminar</button>
+            <button
+              class="text-red-500"
+              (click)="DeleteSocio(ultimoSocio)"
+              title="Haz clic para eliminar el socio"
+            >
+              Eliminar
+            </button>
           </td>
           }
         </tbody>
       </table>
 
-      <div class="my-8"></div> <!-- Agregar espacio vertical entre las tablas -->
-      <br><br>
-
+      <div class="my-8"></div>
+      <!-- Agregar espacio vertical entre las tablas -->
+      <br /><br />
 
       <h2>LISTA DE SOCIOS</h2>
 
@@ -52,55 +101,148 @@
         <tr>
           <th>
             <div class="mb-4">
-              <label for="apellidoFilter" class="text-white">Filtrar por apellido: </label>
-              <input type="text" id="apellidoFilter" [(ngModel)]="apellidoFiltro" class="texto-negro text-black">
+              <label for="apellidoFilter" class="text-white"
+                >Filtrar por apellido:
+              </label>
+              <input
+                type="text"
+                id="apellidoFilter"
+                [(ngModel)]="apellidoFiltro"
+                class="texto-negro text-black"
+              />
             </div>
           </th>
           <th>
             <div class="mb-4">
-              <label for="dniFilter" class="text-white">Filtrar por DNI: </label>
-              <input type="text" id="dniFilter" [(ngModel)]="dniFiltro" class="texto-negro text-black">
+              <label for="socioFilter" class="text-white"
+                >Filtrar por nº de socio:
+              </label>
+              <input
+                type="numbre"
+                id="socioFilter"
+                [(ngModel)]="socioFiltro"
+                class="texto-negro text-black"
+              />
             </div>
           </th>
+          <th>
+            <div class="mb-4">
+              <label for="dniFilter" class="text-white"
+                >Filtrar por DNI:
+              </label>
+              <input
+                type="text"
+                id="dniFilter"
+                [(ngModel)]="dniFiltro"
+                class="texto-negro text-black"
+              />
+            </div>
+          </th>
+        </tr>
       </table>
+
       <table class="table-auto w-full text-left whitespace-no-wrap">
         <thead>
           <tr>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Nº Socio</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Nombre</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">1º apellido</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">2º apellido</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">DNI</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Ver/Editar </th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Pagar</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center">Eliminar</th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              Nº Socio
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              Nombre
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              1º apellido
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              2º apellido
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              DNI
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              Ver/Editar
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              Pagar
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800 text-center"
+            >
+              Eliminar
+            </th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let socio of listSocios"
-            [ngClass]="{'hidden': apellidoFiltro && !removeAccents(socio.primerApellido.toLowerCase()).includes(removeAccents(apellidoFiltro.toLowerCase()))}"
-            [ngClass]="{'hidden': dniFiltro && !removeAccents(socio.dni.toLowerCase()).includes(removeAccents(dniFiltro.toLowerCase()))}">
+          <tr
+            *ngFor="let socio of listSocios"
+            [ngClass]="{
+              hidden:
+                (apellidoFiltro &&
+                  !removeAccents(socio.primerApellido.toLowerCase()).includes(
+                    removeAccents(apellidoFiltro.toLowerCase())
+                  )) ||
+                (dniFiltro &&
+                  !removeAccents(socio.dni.toLowerCase()).includes(
+                    removeAccents(dniFiltro.toLowerCase())
+                  )) ||
+                (socioFiltro &&
+                  !socio.numeroSocio
+                    .toString()
+                    .includes(socioFiltro.toString()))
+            }"
+          >
             <td class="px-4 py-3">{{ socio.numeroSocio }}</td>
             <td class="px-4 py-3">{{ socio.nombre }}</td>
             <td class="px-4 py-3">{{ socio.primerApellido }}</td>
             <td class="px-4 py-3">{{ socio.segundoApellido }}</td>
             <td class="px-4 py-3">{{ socio.dni }}</td>
             <td class="w-10 text-center">
-              <button class="text-blue-500" (click)="GetSocio(socio.numeroSocio)"
-                title="Haz clic para ver la ficha del socio.">
+              <button
+                class="text-blue-500"
+                (click)="GetSocio(socio.numeroSocio)"
+                title="Haz clic para ver la ficha del socio."
+              >
                 <mat-icon>visibility</mat-icon>
               </button>
-              <button class="text-blue-500" (click)="EditSocio(socio.numeroSocio)" title="Haz clic para editar.">
+              <button
+                class="text-blue-500"
+                (click)="EditSocio(socio.numeroSocio)"
+                title="Haz clic para editar."
+              >
                 <mat-icon>edit_note</mat-icon>
               </button>
             </td>
             <td class="w-10 text-center">
-              <button class="text-green-500" (click)="PagarCuota(socio.numeroSocio)"
-                title="Haz clic para realizar el pago de la cuota">Pagar</button>
+              <button
+                class="text-green-500"
+                (click)="PagarCuota(socio.numeroSocio)"
+                title="Haz clic para realizar el pago de la cuota"
+              >
+                Pagar
+              </button>
             </td>
             <td class="w-10 text-center">
-              <button class="text-red-500" (click)="DeleteSocio(socio)"
-                title="Haz clic para eliminar el socio">Eliminar</button>
+              <button
+                class="text-red-500"
+                (click)="DeleteSocio(socio)"
+                title="Haz clic para eliminar el socio"
+              >
+                Eliminar
+              </button>
             </td>
           </tr>
         </tbody>
@@ -109,8 +251,20 @@
   </div>
 </section>
 
-<app-modal-socio *ngIf="showModalFlag" [socioData]="socioData" (closeModal)="HideModal()"></app-modal-socio>
-<app-modal-eliminar-socio *ngIf="showModalEliminarFlag" [socio]="socio" (closeModal)="HideModalEliminar()"
-  (confirmarEliminacion)="confirmarEliminacion(socio.numeroSocio)"></app-modal-eliminar-socio>
-<app-modal-pagar-cuota *ngIf="showModalPagarFlag" [numeroSocio]="numeroSocioAPagar" (closeModal)="HideModalPagar()"
-  (confirmarPago)="confirmarPagar($event)"></app-modal-pagar-cuota>
+<app-modal-socio
+  *ngIf="showModalFlag"
+  [socioData]="socioData"
+  (closeModal)="HideModal()"
+></app-modal-socio>
+<app-modal-eliminar-socio
+  *ngIf="showModalEliminarFlag"
+  [socio]="socio"
+  (closeModal)="HideModalEliminar()"
+  (confirmarEliminacion)="confirmarEliminacion(socio.numeroSocio)"
+></app-modal-eliminar-socio>
+<app-modal-pagar-cuota
+  *ngIf="showModalPagarFlag"
+  [numeroSocio]="numeroSocioAPagar"
+  (closeModal)="HideModalPagar()"
+  (confirmarPago)="confirmarPagar($event)"
+></app-modal-pagar-cuota>
