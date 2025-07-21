@@ -130,7 +130,7 @@ export class ReportesComponent implements OnInit {
 
           // Definir dimensiones de la tabla
           const tableHeight = 22;
-          const columnPositions = [50, 200, 350];
+          const columnPositions = [30, 180, 330, 500];
 
           //Titulo del reporte
           paginaActual.drawText(
@@ -147,7 +147,7 @@ export class ReportesComponent implements OnInit {
           );
           // Encabezado de la tabla
           let yPosition = 750;
-          const headers = ['1º Apellido', '2º Apellido', 'Nombre'];
+          const headers = ['1º Apellido', '2º Apellido', 'Nombre', 'Socio'];
           for (let i = 0; i < headers.length; i++) {
             paginaActual.drawText(headers[i], {
               x: columnPositions[i],
@@ -183,17 +183,22 @@ export class ReportesComponent implements OnInit {
               paginaActual.drawText(`${socio.primerApellido}`.toUpperCase(), {
                 x: columnPositions[0],
                 y: yPosition - tableHeight,
-                size: 15,
+                size: 14,
               });
               paginaActual.drawText(`${socio.segundoApellido}`.toUpperCase(), {
                 x: columnPositions[1],
                 y: yPosition - tableHeight,
-                size: 15,
+                size: 14,
               });
               paginaActual.drawText(`${socio.nombre}`.toUpperCase(), {
                 x: columnPositions[2],
                 y: yPosition - tableHeight,
-                size: 15,
+                size: 14,
+              });
+              paginaActual.drawText(`${socio.numeroSocio}`.toUpperCase(), {
+                x: columnPositions[3],
+                y: yPosition - tableHeight,
+                size: 14,
               });
               //paginaActual.drawText(`${socio.dni}`.toUpperCase(), { x: 50 + 3 * 100, y: yPosition - tableHeight, size: 10 });
               //paginaActual.drawText(`${socio.numeroSocio}`.toUpperCase(), { x: 50 + 4 * 100, y: yPosition - tableHeight, size: 10 });
