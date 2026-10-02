@@ -1,10 +1,11 @@
 import { Component, Inject, Input } from '@angular/core';
 import { Socio } from '../../interfaces/socio';
 import { DialogSocioComponent } from '../dialog-socio/dialog-socio.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SocioService } from '../../services/socio.service';
 import { FormsModule } from '@angular/forms';
 import { ListaSociosComponent } from '../lista-socios/lista-socios.component';
+import { ModalAvisoComponent } from '../modal-aviso/modal-aviso.component';
 
 @Component({
   selector: 'app-dialog-edit-socio',
@@ -41,6 +42,7 @@ export class DialogEditSocioComponent {
   constructor(
     private dialogRef: MatDialogRef<DialogSocioComponent>,
     private socioService: SocioService,
+    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { id: number }) { }
 
   ngOnInit(): void {
@@ -127,9 +129,17 @@ export class DialogEditSocioComponent {
       alert('Socio modificado con exito.');
       window.location.reload();
     }
-    catch {
-      alert('No se ha podido modificar el socio.')
-      window.location.reload();
+    catch (error: any) {
+      this.dialog.open(ModalAvisoComponent, {
+        width: '420px',
+        maxWidth: 'calc(100vw - 32px)',
+        panelClass: 'notice-dialog-panel',
+        data: {
+          title: 'No se pudo modificar el socio',
+          message: error?.error?.mensaje ?? 'No se ha podido modificar el socio.'
+        }
+      });
+      return;
     }
 
     this.dialogRef.close();

@@ -3,4 +3,13 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.notice-dialog-panel .mat-mdc-dialog-surface {
+	--mdc-dialog-container-color: #ffffff;
+	--mat-dialog-container-text-color: #202b38;
+	overflow: hidden;
+	background: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 18px 48px rgb(20 31 43 / 24%);
+}
+
 

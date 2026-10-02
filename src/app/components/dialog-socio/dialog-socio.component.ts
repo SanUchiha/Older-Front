@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Socio } from '../../interfaces/socio';
 import { FormBuilder, FormsModule, NgForm, Validators } from '@angular/forms';
 import { SocioService } from '../../services/socio.service';
 import { ListaSociosComponent } from '../lista-socios/lista-socios.component';
 import { CommonModule } from '@angular/common';
+import { ModalAvisoComponent } from '../modal-aviso/modal-aviso.component';
 
 @Component({
   selector: 'app-dialog-socio',
@@ -40,7 +41,12 @@ export class DialogSocioComponent implements OnInit {
   form!: NgForm;
   numeroSocioPermitido!: boolean;
 
-  constructor(private dialogRef: MatDialogRef<DialogSocioComponent>, private socioService: SocioService, private formBuilder: FormBuilder) { }
+  constructor(
+    private dialogRef: MatDialogRef<DialogSocioComponent>,
+    private socioService: SocioService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
+  ) { }
 
   async ngOnInit(): Promise<void> {
     this.GetAllSocios();
@@ -111,8 +117,17 @@ export class DialogSocioComponent implements OnInit {
       await this.socioService.agregarSocio(objStringify).toPromise();
       alert('Socio creado con exito.');
     }
-    catch {
-      alert('No se ha podido crear el socio.')
+    catch (error: any) {
+      this.dialog.open(ModalAvisoComponent, {
+        width: '420px',
+        maxWidth: 'calc(100vw - 32px)',
+        panelClass: 'notice-dialog-panel',
+        data: {
+          title: 'No se pudo crear el socio',
+          message: error?.error?.mensaje ?? 'No se ha podido crear el socio.'
+        }
+      });
+      return;
     }
 
     this.dialogRef.close();
